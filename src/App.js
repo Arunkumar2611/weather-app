@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import fetchData from './api/fetchData';
 import './App.css';
+import wind from './Image/wind.png';
 
 const App = () => {
     const [query, setQuery] = useState('');
@@ -10,7 +11,6 @@ const App = () => {
     const search = async (e) => {
         if(e.key === 'Enter') {
             const data = await fetchData(query);
-            console.log(data)
             setWeather(data);
             setQuery('');
 
@@ -30,9 +30,15 @@ const App = () => {
                         {Math.round(weather.main.temp)}
                         <sup>&deg;C</sup>
                     </div>
+                    <div className="outer">
                     <div className="info">
                         <img className="city-icon" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} />
                         <p>{weather.weather[0].description}</p>
+                    </div>
+                    <div className="info">
+                    <img className="wind-icon" src={wind} alt={weather.weather[0].description} />
+                        <p>wind {weather.wind.speed}</p>
+                    </div>
                     </div>
                 </div>
             )}
