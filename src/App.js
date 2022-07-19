@@ -11,7 +11,6 @@ const App = () => {
     const search = async (e) => {
         if(e.key === 'Enter') {
             const data = await fetchData(query);
-            console.log(data)
             setWeather(data);
             setQuery('');
 
